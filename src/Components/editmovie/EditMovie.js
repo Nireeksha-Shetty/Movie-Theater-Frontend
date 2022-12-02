@@ -1,10 +1,9 @@
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/EditMovie.css";
 import { Multiselect } from "multiselect-react-dropdown";
 
-function EditMovie({setModalOpen}) {
+function EditMovie({ setModalOpen }) {
   const [id, setId] = useState(null);
   const [movieCode, setMovieCode] = useState("");
   const [rating, setRating] = useState("");
@@ -18,7 +17,7 @@ function EditMovie({setModalOpen}) {
   const [movieUrl, setMovieUrl] = useState("");
   const [firstName, setFirstName] = useState("Akshay");
   const [castOfList, setCastOfList] = useState([]);
-  const [Options,setOptions] = useState([]);
+  const [Options, setOptions] = useState([]);
   const castData = [
     // { name: "Akshay Kumar",castId:1 },
     // { name: "Ranveer Singh",castId:2},
@@ -26,21 +25,21 @@ function EditMovie({setModalOpen}) {
     // { name: "Katrina Kaif",castId:4},
   ];
 
-useEffect(() => {
-  const getActorsData=async()=>{
-    // const getActorsName=[];
-    const reqActor=await fetch("https://633531b1849edb52d6fcfde6.mockapi.io/ActorsData");
-    const resActor = await reqActor.json();
-    console.log(resActor);
-    // for(let i=0;i<resActor.length;i++){
-    //   castData.push(resActor[i].name);
-    // }
-    setOptions(resActor)
-  }
-  getActorsData();
-},[])
-
-
+  useEffect(() => {
+    const getActorsData = async () => {
+      // const getActorsName=[];
+      const reqActor = await fetch(
+        "https://633531b1849edb52d6fcfde6.mockapi.io/ActorsData"
+      );
+      const resActor = await reqActor.json();
+      console.log(resActor);
+      // for(let i=0;i<resActor.length;i++){
+      //   castData.push(resActor[i].name);
+      // }
+      setOptions(resActor);
+    };
+    getActorsData();
+  }, []);
 
   useEffect(() => {
     setId(localStorage.getItem("id"));
@@ -69,8 +68,8 @@ useEffect(() => {
       language,
       movieUrl
     );
-    // axios.put(`http://192.168.137.59:9090/movies/updatemovie`, {
-      axios.put(`http://localhost:9090/movies/updatemovie`, {
+    axios.put(`http://192.168.137.5:9090/movies/updatemovie`, {
+      // axios.put(`http://localhost:9090/movies/updatemovie`, {
       movieCode,
       movieUrl,
       movieName,
@@ -80,238 +79,238 @@ useEffect(() => {
       rating,
       movieStatus,
       language,
-      cast: firstName
+      cast: firstName,
     });
   };
   return (
     <div>
-    <div className="editMovie-main">
-      <form>
-        <div className="editMovie-form">
-          <div className="editMovie-innerDiv">
-            <div className="editMovie-movieName">
-              <div className="editMovie-label-group-name">
-                <p>Movie name*</p>
-              </div>
-              <div className="editMovie-field-name">
-                <input
-                  id="editMovie-inputField-group-name"
-                  type={"text"}
-                  name="movieName"
-                  value={movieName}
-                  placeholder={"Movie name"}
-                  onChange={(e) => setMovieName(e.target.value)}
-                ></input>
-              </div>
-            </div>
-{/*----------------------- Certification ---------------------*/}
-
-            <div className="editMovie-field-code-status">
-              <div className="editMovie-field-sub1">
-                <div className="editMovie-label-group-code">
-                  <p>Movie Code*</p>
+      <div className="editMovie-main">
+        <form>
+          <div className="editMovie-form">
+            <div className="editMovie-innerDiv">
+              <div className="editMovie-movieName">
+                <div className="editMovie-label-group-name">
+                  <p>Movie name*</p>
                 </div>
-                <div>
-                  <select
-                    id="editMovie-inputField-group-code"
-                    defaultValue=""
-                    value={movieCode}
-                    placeholder={"Movie code"}
-                    onChange={(e) => setMovieCode(e.target.value)}
-                  >
-                    {/* <option disabled={true} value="">
+                <div className="editMovie-field-name">
+                  <input
+                    id="editMovie-inputField-group-name"
+                    type={"text"}
+                    name="movieName"
+                    value={movieName}
+                    placeholder={"Movie name"}
+                    onChange={(e) => setMovieName(e.target.value)}
+                  ></input>
+                </div>
+              </div>
+              {/*----------------------- Certification ---------------------*/}
+
+              <div className="editMovie-field-code-status">
+                <div className="editMovie-field-sub1">
+                  <div className="editMovie-label-group-code">
+                    <p>Movie Code*</p>
+                  </div>
+                  <div>
+                    <select
+                      id="editMovie-inputField-group-code"
+                      defaultValue=""
+                      value={movieCode}
+                      placeholder={"Movie code"}
+                      onChange={(e) => setMovieCode(e.target.value)}
+                    >
+                      {/* <option disabled={true} value="">
                         Select movie code
                       </option> */}
-                    <option value="R">R</option>
-                    <option value="A">A</option>
-                    <option value="UA">UA</option>
-                  </select>
+                      <option value="R">R</option>
+                      <option value="A">A</option>
+                      <option value="UA">UA</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* ---------------------- Status ------------------------ */}
+
+                <div className="editMovie-field-sub2">
+                  <div className="editMovie-label-group-status">
+                    <p>Movie Status*</p>
+                  </div>
+                  <div>
+                    <select
+                      id="editMovie-inputField-group-status"
+                      defaultValue=""
+                      value={movieStatus}
+                      placeholder={"Movie status"}
+                      onChange={(e) => setMovieStatus(e.target.value)}
+                    >
+                      <option disabled={true} value="">
+                        Select Status
+                      </option>
+                      <option value="RUNNING">Running</option>
+                      <option value="UPCOMING">Upcoming</option>
+                      <option value="CLOSED">Closed</option>
+                      <option value="DELETE">Delete</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-{/* ---------------------- Status ------------------------ */}
+              {/*---------------------- Language --------------------------*/}
 
-              <div className="editMovie-field-sub2">
-                <div className="editMovie-label-group-status">
-                  <p>Movie Status*</p>
+              <div className="editMovie-field-language-genre">
+                <div className="editMovie-field-sub1">
+                  <div className="editMovie-label-group-language">
+                    <p>Language*</p>
+                  </div>
+                  {/* id="editMovie-inputField-group1" */}
+                  <div>
+                    <select
+                      id="editMovie-inputField-group-language"
+                      value={language}
+                      placeholder={"Language"}
+                      onChange={(e) => setLanguage(e.target.value)}
+                    >
+                      <option disabled={true} value="">
+                        Select Language
+                      </option>
+                      <option value="Hindi">Hindi</option>
+                      <option value="English">English</option>
+                      <option value="Kannada">Kannada</option>
+                      <option value="Telugu">Telugu</option>
+                      <option value="Tamil">Tamil</option>
+                      <option value="Malyalam">Malyalam</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                  <select
-                    id="editMovie-inputField-group-status"
-                    defaultValue=""
-                    value={movieStatus}
-                    placeholder={"Movie status"}
-                    onChange={(e) => setMovieStatus(e.target.value)}
-                  >
-                    <option disabled={true} value="">
-                      Select Status
-                    </option>
-                    <option value="RUNNING">Running</option>
-                    <option value="UPCOMING">Upcoming</option>
-                    <option value="CLOSED">Closed</option>
-                    <option value="DELETE">Delete</option>
-                  </select>
-                </div>
-              </div>
-            </div>
 
-{/*---------------------- Language --------------------------*/}
+                {/* ---------------------- Genre ------------------------ */}
 
-            <div className="editMovie-field-language-genre">
-              <div className="editMovie-field-sub1">
-                <div className="editMovie-label-group-language">
-                  <p>Language*</p>
-                </div>
-                {/* id="editMovie-inputField-group1" */}
-                <div>
-                  <select
-                    id="editMovie-inputField-group-language"
-                    value={language}
-                    placeholder={"Language"}
-                    onChange={(e) => setLanguage(e.target.value)}
-                  >
-                    <option disabled={true} value="">
-                      Select Language
-                    </option>
-                    <option value="Hindi">Hindi</option>
-                    <option value="English">English</option>
-                    <option value="Kannada">Kannada</option>
-                    <option value="Telugu">Telugu</option>
-                    <option value="Tamil">Tamil</option>
-                    <option value="Malyalam">Malyalam</option>
-                  </select>
-                </div>
-              </div>
-
-{/* ---------------------- Genre ------------------------ */}
-
-              <div className="editMovie-field-sub2">
-                <div className="editMovie-label-group-genre">
-                  <p>Genre*</p>
-                </div>
-                <div>
-                  <select
-                    id="editMovie-inputField-group-genre"
-                    value={movieGenre}
-                    placeholder={"Genre"}
-                    onChange={(e) => setMovieGenre(e.target.value)}
-                  >
-                    <option disabled={true} value="">
-                      Select Genre
-                    </option>
-                    <option value="Drama">Drama</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Action">Action</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-{/*------------------- Realese Date ----------------------------*/}
-
-            <div className="editMovie-field-date-duration">
-              <div className="editMovie-field-sub1">
-                <div className="editMovie-label-group-date">
-                  <p>Realese Date*</p>
-                </div>
-                <div>
-                  <input
-                    id="editMovie-inputField-group-date"
-                    type={"text"}
-                    min="1900-01-01"
-                    max="2022-11-25"
-                    name="releaseDate"
-                    value={releaseDate}
-                    onChange={(e) => setReleaseDate(e.target.value)}
-                    placeholder="yyyy-mm-dd"
-                  ></input>
+                <div className="editMovie-field-sub2">
+                  <div className="editMovie-label-group-genre">
+                    <p>Genre*</p>
+                  </div>
+                  <div>
+                    <select
+                      id="editMovie-inputField-group-genre"
+                      value={movieGenre}
+                      placeholder={"Genre"}
+                      onChange={(e) => setMovieGenre(e.target.value)}
+                    >
+                      <option disabled={true} value="">
+                        Select Genre
+                      </option>
+                      <option value="Drama">Drama</option>
+                      <option value="Horror">Horror</option>
+                      <option value="Comedy">Comedy</option>
+                      <option value="Thriller">Thriller</option>
+                      <option value="Action">Action</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-{/* ---------------------- Genre ------------------------ */}
+              {/*------------------- Realese Date ----------------------------*/}
 
-              <div className="editMovie-field-sub2">
-                <div className="editMovie-label-group-duration">
-                  <p>Duration*</p>
+              <div className="editMovie-field-date-duration">
+                <div className="editMovie-field-sub1">
+                  <div className="editMovie-label-group-date">
+                    <p>Realese Date*</p>
+                  </div>
+                  <div>
+                    <input
+                      id="editMovie-inputField-group-date"
+                      type={"text"}
+                      min="1900-01-01"
+                      max="2022-11-25"
+                      name="releaseDate"
+                      value={releaseDate}
+                      onChange={(e) => setReleaseDate(e.target.value)}
+                      placeholder="yyyy-mm-dd"
+                    ></input>
+                  </div>
                 </div>
-                <div>
-                  <input
-                    id="editMovie-inputField-group-duration"
-                    type={"text"}
-                    value={duration}
-                    onChange={(e) => setDuration(e.target.value)}
-                    name="duration"
-                    placeholder="Duration"
-                  ></input>
-                </div>
-              </div>
-            </div>
 
-{/* ----------------------- Image link -------------------------*/}
+                {/* ---------------------- Genre ------------------------ */}
 
-            <div className="editMovie-field-image-ratings">
-              <div className="editMovie-field-sub1">
-                <div className="editMovie-label-group-image">
-                  <p>Image Link*</p>
-                </div>
-                <div className="editMovie-field">
-                  <input
-                    type={"text"}
-                    name="movieUrl"
-                    value={movieUrl}
-                    placeholder={"Image link"}
-                    onChange={(e) => setMovieUrl(e.target.value)}
-                    id="editMovie-inputField-group-image"
-                  ></input>
-                </div>
-              </div>
-
-{/* ---------------------- Ratings ------------------------ */}
-
-              <div className="editMovie-field-sub2">
-                <div className="editMovie-label-group-ratings">
-                  <p>Ratings*</p>
-                </div>
-                <div className="editMovie-field">
-                  <input
-                    type={"text"}
-                    name="rating"
-                    value={rating}
-                    onChange={(e) => setRating(e.target.value)}
-                    id="editMovie-inputField-group-ratings"
-                  ></input>
+                <div className="editMovie-field-sub2">
+                  <div className="editMovie-label-group-duration">
+                    <p>Duration*</p>
+                  </div>
+                  <div>
+                    <input
+                      id="editMovie-inputField-group-duration"
+                      type={"text"}
+                      value={duration}
+                      onChange={(e) => setDuration(e.target.value)}
+                      name="duration"
+                      placeholder="Duration"
+                    ></input>
+                  </div>
                 </div>
               </div>
-            </div>
 
-{/* ---------------------- Cast ------------------------ */}
+              {/* ----------------------- Image link -------------------------*/}
 
-            <div>
-              <div className="editMovie-label-group-cast">
-                <p>Cast*</p>
+              <div className="editMovie-field-image-ratings">
+                <div className="editMovie-field-sub1">
+                  <div className="editMovie-label-group-image">
+                    <p>Image Link*</p>
+                  </div>
+                  <div className="editMovie-field">
+                    <input
+                      type={"text"}
+                      name="movieUrl"
+                      value={movieUrl}
+                      placeholder={"Image link"}
+                      onChange={(e) => setMovieUrl(e.target.value)}
+                      id="editMovie-inputField-group-image"
+                    ></input>
+                  </div>
+                </div>
+
+                {/* ---------------------- Ratings ------------------------ */}
+
+                <div className="editMovie-field-sub2">
+                  <div className="editMovie-label-group-ratings">
+                    <p>Ratings*</p>
+                  </div>
+                  <div className="editMovie-field">
+                    <input
+                      type={"text"}
+                      name="rating"
+                      value={rating}
+                      onChange={(e) => setRating(e.target.value)}
+                      id="editMovie-inputField-group-ratings"
+                    ></input>
+                  </div>
+                </div>
               </div>
-              <div className="editMovie-field-cast">
-              <Multiselect
-                  id="editMovie-multiSelect"
-                  options={Options}
-                  displayValue={"name"}
-                  value={firstName}
-                  // onRemove={(e)=>{
-                  //   console.log(e);
-                  // }}
-                  onSelect={(e) => {
-                    console.log("CastList",e);
-                    setFirstName(e);
-                  }}
-                />
-              </div>
-            </div>
-            <br/>
 
-{/* -------------------------- Description --------------------- */}
-            {/* <div>
+              {/* ---------------------- Cast ------------------------ */}
+
+              <div>
+                <div className="editMovie-label-group-cast">
+                  <p>Cast*</p>
+                </div>
+                <div className="editMovie-field-cast">
+                  <Multiselect
+                    id="editMovie-multiSelect"
+                    options={Options}
+                    displayValue={"name"}
+                    value={firstName}
+                    // onRemove={(e)=>{
+                    //   console.log(e);
+                    // }}
+                    onSelect={(e) => {
+                      console.log("CastList", e);
+                      setFirstName(e);
+                    }}
+                  />
+                </div>
+              </div>
+              <br />
+
+              {/* -------------------------- Description --------------------- */}
+              {/* <div>
               <div className="editMovie-label-group-description">
                 <p>Movie description*</p>
               </div>
@@ -328,38 +327,38 @@ useEffect(() => {
             </div>
             <br/> */}
 
-{/* ---------------------- Save button ------------------------ */}
-            <div className="editMovie-buttons-save-cancel">
-              <div className="editMovie-button-save">
-                <button
-                  id="editMovie-save"
-                  onClick={() => {
-                  updateAPIData();
-                  window.setTimeout(function () {
-                    window.location.reload();
-                  }, 500);
-                }}
-                >
-                  Save Movie
-                </button>
-              </div>
-{/* ---------------------- Cancel button ------------------------ */}
-              <div className="editMovie-button-save">
-                <button
-                  id="editMovie-cancel"
-                  onClick={() => {
-                    setModalOpen(true);
-                  }}
-                >
-                  Cancel
-                </button>
+              {/* ---------------------- Save button ------------------------ */}
+              <div className="editMovie-buttons-save-cancel">
+                <div className="editMovie-button-save">
+                  <button
+                    id="editMovie-save"
+                    onClick={() => {
+                      updateAPIData();
+                      window.setTimeout(function () {
+                        window.location.reload();
+                      }, 500);
+                    }}
+                  >
+                    Save Movie
+                  </button>
+                </div>
+                {/* ---------------------- Cancel button ------------------------ */}
+                <div className="editMovie-button-save">
+                  <button
+                    id="editMovie-cancel"
+                    onClick={() => {
+                      setModalOpen(true);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
-  </div>
   );
 }
 
