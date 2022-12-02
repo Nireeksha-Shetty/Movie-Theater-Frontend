@@ -11,41 +11,36 @@ export default function Moviecard({ movieStatus, add }) {
   const [APIData, setAPIData] = useState([]);
   const [modalOpenEdit, setModalOpenEdit] = useState(false);
   const [modalOpenDelete, setModalOpenDelete] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("")
+  const [errorMsg, setErrorMsg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-
 
   // componentDidMount() {
   //   axios.get('http://localhost:3333/items')
   //     .then(response => this.setState({items: response.data}))
-  //     .catch(err => { 
+  //     .catch(err => {
   //       this.setState({errorMessage: err.message});
   //     })
   // }
 
-
-
   useEffect(() => {
     console.log(movieStatus);
     axios
-      // .get(`http://192.168.137.59:9090/movies/${movieStatus}`)
-      .get(`http://localhost:9090/movies/${movieStatus}`)
+      .get(`http://192.168.137.5:9090/movies/${movieStatus}`)
+      // .get(`http://localhost:9090/movies/${movieStatus}`)
       .then((response) => {
-        if(response.status=="226"){
-            setAPIData([]);
-            // alert(response.data);
-            setErrorMsg(response.data);
-        }
-        else if(response.status>=400){
-          return <PageNotFound/>
+        if (response.status == "226") {
+          setAPIData([]);
+          // alert(response.data);
+          setErrorMsg(response.data);
+        } else if (response.status >= 400) {
+          return <PageNotFound />;
           // setModalOpen(true);
+        } else {
+          setAPIData(response.data);
+          setErrorMsg("");
+          console.log(response.data);
         }
-        else{
-        setAPIData(response.data);
-        setErrorMsg("")
-        console.log(response.data);
-        }
-      })
+      });
     // .catch(err => {
     //     setErrorMsg("err");
     //     setAPIData()
@@ -127,7 +122,7 @@ export default function Moviecard({ movieStatus, add }) {
             </div>
 
             <div className="buttons">
-              <div className="button1">
+              <div className="moviecardbutton1">
                 {add == "admin" ? (
                   <p>
                     <button
@@ -169,7 +164,6 @@ export default function Moviecard({ movieStatus, add }) {
                 {/* </Link> */}
               </div>
             </div>
-            
           </div>
         );
       })}

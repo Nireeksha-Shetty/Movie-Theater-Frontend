@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: space-between;
   color: white;
+  width:100% ;
 }
 .navs {
   display: flex;

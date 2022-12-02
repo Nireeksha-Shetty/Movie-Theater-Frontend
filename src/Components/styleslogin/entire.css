@@ -547,7 +547,7 @@ body {
 }
 .header-main {
   background-color: #333545;
-  width: max-content;
+  width: 100%;
   height: 6.5rem;
   align-items: center;
   display: flex;
