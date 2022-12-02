@@ -1,33 +1,32 @@
 // import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Main from '../src/Components/main/Main';
-import Delete from '../src/Components/delete/Delete';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "../src/Components/main/Main";
+import Delete from "../src/Components/delete/Delete";
 
-import Emailver from './Components/emailVerification/EmailVer';
-import LogIn from './Components/logIn/LogIn';
-import Reset from './Components/emailVerification/Reset';
-import SignUpAdmin from '../src/Components/signUp/SignUpAdmin';
-import './Components/styleslogin/entire.css';
-import Settings from './Components/settingslogin/Settings';
-import LandingPage from '../src/Components/landingPage/LandingPage';
-import SignUpUser from './Components/signUp/SignUpUser';
-import RegisteredSuccess from '../src/Components/regeistration/RegisteredSuccess';
-import RegisteredFailed from '../src/Components/regeistration/RegisteredFailed';
+import Emailver from "./Components/emailVerification/EmailVer";
+import LogIn from "./Components/logIn/LogIn";
+import Reset from "./Components/emailVerification/Reset";
+import SignUpAdmin from "../src/Components/signUp/SignUpAdmin";
+import "./Components/styleslogin/entire.css";
+import Settings from "./Components/settingslogin/Settings";
+import LandingPage from "../src/Components/landingPage/LandingPage";
+import SignUpUser from "./Components/signUp/SignUpUser";
+import RegisteredSuccess from "../src/Components/regeistration/RegisteredSuccess";
+import RegisteredFailed from "../src/Components/regeistration/RegisteredFailed";
 
-import Adminschedule from '../src/Components/AdminSchedule/Adminschedule';
-import AdminView from '../src/Components/AdminSchedule/AdminView';
+import Adminschedule from "../src/Components/AdminSchedule/Adminschedule";
+import AdminView from "../src/Components/AdminSchedule/AdminView";
 
-import UserSide_view from '../src/Components/UserSide/UserSide_view';
-import './Components/Sch_Styles/UserSide_View.css';
-import UserSideMovieView from './Components/UserSide/UserSideMovieView';
+import UserSide_view from "../src/Components/UserSide/UserSide_view";
+import "./Components/Sch_Styles/UserSide_View.css";
+import UserSideMovieView from "./Components/UserSide/UserSideMovieView";
 
-// import ViewSeats from '../src/pages/ViewSeats';
-// import ViewTicket from '../src/pages/ViewTicket';
-// import ViewConfirmBookingDetails from '../src/pages/ViewConfirmBookingDetails';
-// import AdminFilterViewAllTicket from '../src/pages/AdminFilterViewAllTicket';
-// import UserMenu from '../src/Components/food-userBody/user-menu';
-// import AdminMenu from '../src/Components/food-adminbody/admin-menu';
-import Provider from './Components/theater/Provider';
+import Provider from "./Components/theater/Provider";
+
+import ViewSeats from "./Components/booking/ViewSeats";
+import ViewTicket from "./Components/booking/ViewTicket";
+import ViewConfirmBookingDetails from "./Components/booking/ViewConfirmBookingDetails";
+import AdminFilterViewAllTicket from "./Components/booking/AdminFilterViewAllTicket";
 
 function App() {
   return (
@@ -65,21 +64,19 @@ function App() {
               path="/UserSideMovieView"
               element={<UserSideMovieView />}
             />
+            <Route exact path="/ViewSeats" element={<ViewSeats />} />
+            <Route exact path="/ViewTicket" element={<ViewTicket />} />
+            <Route
+              exact
+              path="/ViewConfirmBookingDetails"
+              element={<ViewConfirmBookingDetails />}
+            />
+            <Route
+              exact
+              path="/AdminFilterViewAllTicket"
+              element={<AdminFilterViewAllTicket />}
+            />
 
-            {/* <Route exact path="/ViewSeats" element={<ViewSeats />} />
-        <Route exact path="/ViewTicket" element={<ViewTicket />} />
-        <Route
-          exact
-          path="/ViewConfirmBookingDetails"
-          element={<ViewConfirmBookingDetails />}
-        />
-        <Route
-          exact
-          path="/AdminFilterViewAllTicket"
-          element={<AdminFilterViewAllTicket />}
-        />
-        <Route path="/Usermenu" element={<UserMenu />} />
-        <Route path="/admin" element={<AdminMenu />} />*/}
             <Route path="/theater" element={<Provider user={"ADMIN"} />} />
           </Route>
         </Routes>

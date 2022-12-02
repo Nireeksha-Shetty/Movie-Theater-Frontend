@@ -548,7 +548,7 @@ body {
 .header-main {
   background-color: #333545;
   width: max-content;
-  height: 6.5rem;
+  /* height: 6.5rem; */
   align-items: center;
   display: flex;
   z-index: 20;
