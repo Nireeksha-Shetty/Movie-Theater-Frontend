@@ -27,8 +27,7 @@ import UserSideMovieView from './Components/UserSide/UserSideMovieView';
 // import AdminFilterViewAllTicket from '../src/pages/AdminFilterViewAllTicket';
 // import UserMenu from '../src/Components/food-userBody/user-menu';
 // import AdminMenu from '../src/Components/food-adminbody/admin-menu';
-// import Provider from '../src/Components/sharedSeats/Provider';
-
+import Provider from './Components/theater/Provider';
 
 function App() {
   return (
@@ -37,28 +36,37 @@ function App() {
         <Routes>
           <Route>
             <Route exact path="/" element={<Main />} />
-            <Route exact path="/delete" element={<Delete />} /> 
+            <Route exact path="/delete" element={<Delete />} />
             {/* <Route exact path="/*" element={<PageNotFound/>}  /> */}
- 
-            <Route path='/login' element={<LogIn />} />
-            <Route path='/register' element={<SignUpAdmin />} />
-            <Route path='/settings' element={<Settings />} />
-            <Route path='/forgetpassword' element={<Emailver />} />
-            <Route path='/resetpassword' element={<Reset />} />
-            <Route path='/adminlandingpage' element={<LandingPage />} />
-            <Route path='/registerUser' element={<SignUpUser />} />
-            <Route path='/registerAdminSuccess' element={<RegisteredSuccess />} />
-            <Route path='/registerAdminFailed' element={<RegisteredFailed />} />
 
-            
-          <Route exact path='/adminSchedule' element={<Adminschedule />}></Route>
-          <Route exact path='/adminview' element={<AdminView />}></Route>
-          <Route exact path="/UserSide_view" element={<UserSide_view/>}/>
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/register" element={<SignUpAdmin />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/forgetpassword" element={<Emailver />} />
+            <Route path="/resetpassword" element={<Reset />} />
+            <Route path="/adminlandingpage" element={<LandingPage />} />
+            <Route path="/registerUser" element={<SignUpUser />} />
+            <Route
+              path="/registerAdminSuccess"
+              element={<RegisteredSuccess />}
+            />
+            <Route path="/registerAdminFailed" element={<RegisteredFailed />} />
 
-          <Route exact path="/UserSideMovieView" element={<UserSideMovieView/>}/>
+            <Route
+              exact
+              path="/adminSchedule"
+              element={<Adminschedule />}
+            ></Route>
+            <Route exact path="/adminview" element={<AdminView />}></Route>
+            <Route exact path="/UserSide_view" element={<UserSide_view />} />
 
+            <Route
+              exact
+              path="/UserSideMovieView"
+              element={<UserSideMovieView />}
+            />
 
-          {/* <Route exact path="/ViewSeats" element={<ViewSeats />} />
+            {/* <Route exact path="/ViewSeats" element={<ViewSeats />} />
         <Route exact path="/ViewTicket" element={<ViewTicket />} />
         <Route
           exact
@@ -71,18 +79,11 @@ function App() {
           element={<AdminFilterViewAllTicket />}
         />
         <Route path="/Usermenu" element={<UserMenu />} />
-        <Route path="/admin" element={<AdminMenu />} />
-        <Route path="/theater" element={<Provider user={"ADMIN"} />} /> */}
-          
-
-
-
-
+        <Route path="/admin" element={<AdminMenu />} />*/}
+            <Route path="/theater" element={<Provider user={"ADMIN"} />} />
           </Route>
         </Routes>
       </BrowserRouter>
-
-
     </div>
   );
 }
