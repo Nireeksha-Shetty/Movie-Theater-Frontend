@@ -26,7 +26,7 @@ export default function Moviecard({ movieStatus, add }) {
     console.log(movieStatus);
     axios
       // .get(`http://192.168.137.5:9090/movies/${movieStatus}`)
-      .get(`http://localhost:9090/movies/${movieStatus}`)
+      .get(`http://Movies.learn.skillassure.com/${movieStatus}`)
       .then((response) => {
         if (response.status == "226") {
           setAPIData([]);

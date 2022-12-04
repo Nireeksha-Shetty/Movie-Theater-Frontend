@@ -53,7 +53,7 @@ function AddMovie({ setModalOpen }) {
       movieUrl
     );
     // axios.post(`http://192.168.137.5:9090/movies/addmovie`, {
-      axios.post(`http://localhost:9090/movies/addmovie`, {
+      axios.post(`http://Movies.learn.skillassure.com/addmovie`, {
       movieCode,
       movieUrl,
       movieName,

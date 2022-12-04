@@ -9,7 +9,7 @@ export default function Delete({ setModalOpen }, e) {
     axios
       .delete(
         // `http://192.168.137.5:9090/movies/deletemovie/${movieName}`
-        `http://localhost:9090/movies/deletemovie/${movieName}`
+        `http://Movies.learn.skillassure.com/deletemovie/${movieName}`
       )
       .then(() => {
         getData();
