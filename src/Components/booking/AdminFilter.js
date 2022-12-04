@@ -83,50 +83,53 @@ function AdminFilter() {
   };
 
   return (
-<><Header></Header>
-    <div className="admin_filter_main_container">
-      <div className="admin_filter_heading">
-        <h3>Admin Filter Section</h3>
+    <>
+      <Header></Header>
+      <div className="admin_filter_main_container">
+        <div className="admin_filter_heading">
+          <h3>Admin Filter Section</h3>
+        </div>
+        <div className="admin_filter_search_back">
+          <form className="admin_filter_search" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="moviename"
+              placeholder="Movie Name"
+              className="ScheduleInputs"
+              value={data.moviename}
+              onChange={handleChange}
+            />
+            OR
+            <input
+              type="date"
+              name="date"
+              placeholder="Date"
+              className="ScheduleInputs"
+              value={data.date}
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="submitButton"
+              onClick={searchmoviebynamedate}
+            >
+              Search
+            </button>
+            <button type="button" className="viewAll" onClick={getallmovies}>
+              View All
+            </button>
+          </form>
+        </div>
+        {getMovies ? <ViewAllTicket></ViewAllTicket> : " "}
+        {showMovie ? <ViewAllMovieName moviename={data.moviename} /> : " "}
+        {showMovieDate ? (
+          <ViewSearchedDate moviedate={data.date}></ViewSearchedDate>
+        ) : (
+          " "
+        )}
+        <Footer> </Footer>
       </div>
-      <div className="admin_filter_search_back">
-        <form className="admin_filter_search" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="moviename"
-            placeholder="Movie Name"
-            value={data.moviename}
-            onChange={handleChange}
-          />
-          OR
-          <input
-            type="date"
-            name="date"
-            placeholder="Date"
-            value={data.date}
-            onChange={handleChange}
-          />
-          <button
-            type="submit"
-            className="submitButton"
-            onClick={searchmoviebynamedate}
-          >
-            Search
-          </button>
-          <button type="button" className="viewAll" onClick={getallmovies}>
-            View All
-          </button>
-        </form>
-      </div>
-      {getMovies ? <ViewAllTicket></ViewAllTicket> : " "}
-      {showMovie ? <ViewAllMovieName moviename={data.moviename} /> : " "}
-      {showMovieDate ? (
-        <ViewSearchedDate moviedate={data.date}></ViewSearchedDate>
-      ) : (
-        " "
-      )}
-    <Footer> </Footer>
-    </div>
-  </>
+    </>
   );
 }
 
