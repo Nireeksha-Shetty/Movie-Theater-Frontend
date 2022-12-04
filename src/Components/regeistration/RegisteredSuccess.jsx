@@ -1,8 +1,16 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import SignUpAdmin from '../signUp/SignUpAdmin';
 
 function RegisteredSuccess() {
   //JSX Component
+  const navigate=useNavigate();
+const handleAdmin=(e)=>{
+  navigate("/register");
+}
+const handleDashboard=(e)=>{
+  navigate("/");
+}
   return (
     <div className='RegisterSuccess'>
     <div className='popupPage text-center'>
@@ -13,8 +21,8 @@ function RegisteredSuccess() {
           <p>You created New Admin Account</p>
         </div>
       <div className='success-buttons'>
-          <button>Add Another Admin</button>
-          <button>Go to DashBoard</button>
+          <button onClick={(e)=>handleAdmin(e)}>Add Another Admin</button>
+          <button onClick={(e)=>handleDashboard(e)}>Go to DashBoard</button>
         </div>
         {/* <button className='cancel secondary-button'>X</button> */}
       </div>

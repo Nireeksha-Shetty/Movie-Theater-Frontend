@@ -4,14 +4,20 @@ import { Link } from 'react-router-dom'
 import '../styleslogin/entire.css';
 // import Header from './Header'
 import '../styleslogin/logo.png'
+import { useNavigate } from 'react-router-dom';
+import Header from '../shared/Header';
 
 export default function LandingPage() {
+const navigate=useNavigate();
 
+const goto=(e)=>{
+    navigate("/");
+}
     //JSX Component
     return (
         <>
             
-                
+              <Header/>  
            
 
             <header style={HeaderStyle}>
@@ -22,7 +28,7 @@ export default function LandingPage() {
                         <button className="primary-button">Add New Admin</button>
                     </Link>
                     <Link to="/">
-                        <button className="primary-button" id="reg_btn"><span>Go to DashBoard</span></button>
+                        <button className="primary-button" id="reg_btn" onClick={(e)=>goto(e)}><span>Go to DashBoard</span></button>
                     </Link>
                 </div>
             </header>

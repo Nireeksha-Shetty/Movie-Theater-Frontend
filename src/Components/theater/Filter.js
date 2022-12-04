@@ -71,9 +71,9 @@ function Filter(props) {
                 <option value="Filter" disabled selected>
                   Filter
                 </option>
-                <option value="name">By Name</option>
-                <option value="city">By City</option>
-                <option value="address">By Address</option>
+                <option value="Name">By Name</option>
+                <option value="City">By City</option>
+                <option value="Address">By Address</option>
                 <option value="All">All</option>
               </Select>
             </Stack>

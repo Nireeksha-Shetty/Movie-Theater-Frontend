@@ -1,3 +1,3 @@
-const baseUrl="http://localhost:8080/api";
+const baseUrl="https://users-galaxe.learn.skillassure.com/api";
 export default baseUrl;
 

@@ -25,8 +25,8 @@ export default function Moviecard({ movieStatus, add }) {
   useEffect(() => {
     console.log(movieStatus);
     axios
-      // .get(`http://192.168.137.5:9090/movies/${movieStatus}`)
-      .get(`http://Movies.learn.skillassure.com/${movieStatus}`)
+      .get(`http://192.168.137.5:9090/movies/${movieStatus}`)
+      // .get(`http://localhost:9090/movies/${movieStatus}`)
       .then((response) => {
         if (response.status == "226") {
           setAPIData([]);
@@ -121,12 +121,12 @@ export default function Moviecard({ movieStatus, add }) {
               <div className="language"> {data.language}</div>
             </div>
 
-            <div className="movieCardbuttons">
+            <div className="buttons">
               <div className="moviecardbutton1">
                 {add == "admin" ? (
                   <p>
                     <button
-                      id="movieCardeditbtn"
+                      id="editbtn"
                       onClick={(e) => {
                         {
                           e.preventDefault();
@@ -147,7 +147,7 @@ export default function Moviecard({ movieStatus, add }) {
                 {add == "admin" ? (
                   <p>
                     <button
-                      id="movieCarddeletebtn"
+                      id="deletebtn"
                       onClick={(e) => {
                         {
                           e.preventDefault();

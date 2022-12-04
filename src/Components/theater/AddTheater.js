@@ -17,7 +17,6 @@ import { TbLayoutGridAdd } from "react-icons/tb";
 import AddAddress from "./AddAddress";
 import AddSeats from "./AddSeats";
 import "./AddTheater.css";
-import theaterBase from "../sch_environment/theaterBaseUrl";
 
 function AddTheater() {
   const OverlayOne = () => (
@@ -56,16 +55,12 @@ const finalsubmit=()=>{
     address: details.address,
     row: row
 }
-axios
-  .post(
-    `${theaterBase}theater`,
-    userdata
-  )
-  .then((response) => {
-    localStorage.clear();
-    alert(response.data);
-    window.location.reload();
-  });
+axios.post("http://localhost:9090/theater", userdata)
+.then((response) => {
+  localStorage.clear();
+  alert(response.data);
+  window.location.reload();
+})
 
 }
 

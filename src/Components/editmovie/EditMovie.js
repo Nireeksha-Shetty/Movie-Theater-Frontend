@@ -68,8 +68,8 @@ function EditMovie({ setModalOpen }) {
       language,
       movieUrl
     );
-    // axios.put(`http://192.168.137.5:9090/movies/updatemovie`, {
-      axios.put(`http://Movies.learn.skillassure.com/updatemovie`, {
+    axios.put(`http://192.168.137.5:9090/movies/updatemovie`, {
+      // axios.put(`http://localhost:9090/movies/updatemovie`, {
       movieCode,
       movieUrl,
       movieName,
