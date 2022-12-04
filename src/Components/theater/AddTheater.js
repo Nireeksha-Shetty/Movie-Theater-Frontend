@@ -55,12 +55,16 @@ const finalsubmit=()=>{
     address: details.address,
     row: row
 }
-axios.post("http://localhost:9090/theater", userdata)
-.then((response) => {
-  localStorage.clear();
-  alert(response.data);
-  window.location.reload();
-})
+axios
+  .post(
+    "https://theater.learn.skillassure.com/theater/theater/theater",
+    userdata
+  )
+  .then((response) => {
+    localStorage.clear();
+    alert(response.data);
+    window.location.reload();
+  });
 
 }
 

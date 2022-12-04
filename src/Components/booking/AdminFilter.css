@@ -43,8 +43,7 @@
   background-color: aliceblue;
 }
 
-input[type="text"],
-input[type="date"] {
+.ScheduleInputs{
   height: 2rem;
   width: 10rem;
   border-radius: 0.5rem;

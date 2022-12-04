@@ -21,12 +21,16 @@ function DeleteTheater(props) {
   const initialFocusRef = React.useRef();
 
   const  callDeleteApi=()=>{
-axios.delete(`http://localhost:9091/theater/${props.TheaterName}`)
-.then((Response)=>{
-  window.location.reload();
- {console.log("deleted suceefully")}
- 
-})
+axios
+  .delete(
+    `https://theater.learn.skillassure.com/theater/theater/${props.TheaterName}`
+  )
+  .then((Response) => {
+    window.location.reload();
+    {
+      console.log("deleted suceefully");
+    }
+  });
 
  
     

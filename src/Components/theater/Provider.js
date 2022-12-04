@@ -28,7 +28,7 @@ function Provider(props) {
   const [filterType, setFilterType] = useState("All");
   const [value, setValue] = useState("kiru");
   const [isEmpty, setIsEmpty] = useState(false);
-  const [errors, setErrors] = useState();
+  const [errors, setErrors] = useState("Loading Data ...");
 
   // var apiString = "http://localhost:9090/theatre/"+{filterType}+"/"+{value};
   useEffect(() => {
@@ -38,12 +38,17 @@ function Provider(props) {
 
     if (filterType == "All" || filterType == "Filter") {
       axios
-        .get("http://localhost:9090/theater/All")
+        .get("https://theater.learn.skillassure.com/theater/theater/All")
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
             setAPIdata(response.data);
             setIsEmpty(true);
+          }
+          else{
+            console.log(response.data);
+            setIsEmpty(false);
+            setErrors(response.data);
           }
         })
         .catch(function (error) {
@@ -53,7 +58,9 @@ function Provider(props) {
         });
     } else if (filterType == "City") {
       axios
-        .get(`http://localhost:9090/theater/city/${value}`)
+        .get(
+          `https://theater.learn.skillassure.com/theater/theater/city/${value}`
+        )
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
@@ -68,7 +75,9 @@ function Provider(props) {
         });
     } else if (filterType == "Name") {
       axios
-        .get(`http://localhost:9090/theater/name/${value}`)
+        .get(
+          `https://theater.learn.skillassure.com/theater/theater/name/${value}`
+        )
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
@@ -83,7 +92,9 @@ function Provider(props) {
         });
     } else if (filterType == "Address") {
       axios
-        .get(`http://localhost:9090/theater/searchByAddress/${value}`)
+        .get(
+          `https://theater.learn.skillassure.com/theater/theater/searchByAddress/${value}`
+        )
         .then((response) => {
           if (response.status == "200") {
             console.log(response);

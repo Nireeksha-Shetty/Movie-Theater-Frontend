@@ -53,21 +53,23 @@ function UpdateTheater(props) {
       address: details.address,
       row: row
   }
-  axios.put("http://localhost:9090/theater/update", userdata)
-  .then((response) => {
+  axios
+    .put(
+      "https://theater.learn.skillassure.com/theater/theater/update",
+      userdata
+    )
+    .then((response) => {
       // console.log(response.status);
       // console.log(response);
-  
+
       localStorage.clear();
-  
+
       if (response.data === "Updated Successfully") {
-          alert(response.data);
+        alert(response.data);
+      } else {
+        alert("Saving failed");
       }
-      else {
-          alert("Saving failed");
-      }
-  
-  })
+    });
   
   }
      const databasesubmit=()=>{
