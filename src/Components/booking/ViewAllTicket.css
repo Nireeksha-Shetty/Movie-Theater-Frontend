@@ -47,7 +47,7 @@ img {
   flex-direction: column;
 }
 .moviename {
-  color: #ffffff;
+  /* color: #ffffff; */
 }
 .movieduration {
   color: #ffffff;

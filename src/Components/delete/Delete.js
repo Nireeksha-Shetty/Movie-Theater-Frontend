@@ -8,8 +8,8 @@ export default function Delete({ setModalOpen }, e) {
   const onDelete = (id) => {
     axios
       .delete(
-        `http://192.168.137.5:9090/movies/deletemovie/${movieName}`
-        // `http://localhost:9090/movies/deletemovie/${movieName}`
+        // `http://192.168.137.5:9090/movies/deletemovie/${movieName}`
+        `http://localhost:9090/movies/deletemovie/${movieName}`
       )
       .then(() => {
         getData();
@@ -21,6 +21,7 @@ export default function Delete({ setModalOpen }, e) {
   }, []);
   const getData = () => {
     axios.get(`http://192.168.137.5:9090/movies`);
+    axios.get(`http://localhost:9090/movies`);
   };
 
   return (

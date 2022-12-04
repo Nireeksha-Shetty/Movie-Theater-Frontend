@@ -4,7 +4,7 @@ import "../styles/Buttons.css";
 import Main from "../main/Main";
 import AddMovie from "../addmovie/AddMovie";
 
-export default function Buttons({ setMovieStatus ,add}) {
+export default function MovieOptions({ setMovieStatus ,add}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [addbtn, setaddbtn] = useState(true);
 

@@ -30,15 +30,10 @@ function AddMovie({ setModalOpen }) {
 
   useEffect(() => {
     const getActorsData = async () => {
-      // const getActorsName=[];
       const reqActor = await fetch(
         "https://633531b1849edb52d6fcfde6.mockapi.io/ActorsData"
       );
       const resActor = await reqActor.json();
-      console.log(resActor);
-      // for(let i=0;i<resActor.length;i++){
-      //   castData.push(resActor[i].name);
-      // }
       setOptions(resActor);
     };
     getActorsData();
@@ -57,8 +52,8 @@ function AddMovie({ setModalOpen }) {
       language,
       movieUrl
     );
-    axios.post(`http://192.168.137.5:9090/movies/addmovie`, {
-      // axios.post(`http://localhost:9090/movies/addmovie`, {
+    // axios.post(`http://192.168.137.5:9090/movies/addmovie`, {
+      axios.post(`http://localhost:9090/movies/addmovie`, {
       movieCode,
       movieUrl,
       movieName,
@@ -68,7 +63,7 @@ function AddMovie({ setModalOpen }) {
       movieStatus,
       rating,
       language,
-      cast,
+      cast:firstName,
     });
   };
   const fieldValidation = (e) => {
@@ -120,7 +115,7 @@ function AddMovie({ setModalOpen }) {
                     //  name={this.setMovieName1()}
                     onChange={(e) => {
                       setMovieName(e.target.value);
-                      setMovieName1(e);
+                      // setMovieName1(e);
                     }}
                   />
                 </div>
@@ -272,7 +267,6 @@ function AddMovie({ setModalOpen }) {
                     console.log("CastList", e);
                     setFirstName(e);
                   }}
-                  onChange={(e) => setCast(e.target.value)}
                 />
               </div>
 
@@ -286,7 +280,7 @@ function AddMovie({ setModalOpen }) {
                       onClick={(e) => {
                         postData();
                         setModalOpen(false);
-                        fieldValidation(e);
+                        // fieldValidation(e);
                         window.setTimeout(function () {
                           window.location.reload();
                         }, 500);
@@ -298,7 +292,11 @@ function AddMovie({ setModalOpen }) {
                 </div>
 
                 <div className="Addmovie-Moviebtn">
-                  <button id="Addmovie-cancelbtn">Cancel</button>
+                  <button id="Addmovie-cancelbtn"
+                   onClick={()=>
+                        setModalOpen(false)
+                      }
+                      >Cancel</button>
                 </div>
               </div>
             </div>
