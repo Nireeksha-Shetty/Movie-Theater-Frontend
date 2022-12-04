@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Footer from "../shared/Footer";
 import Header from "../shared/Header";
-import Buttons from "../button/Buttons";
 // import Delete from "./Delete";
 // import MainContainer from "./MainContainer";
 import Moviecard from "../movie/Moviecard";
 import Navbar from "../shared/Navbar";
 import "../../../src/App.css";
 import { Route } from "react-router-dom";
+import MovieOptions from "../button/MovieOptions";
 
 function Main() {
   const [movieStatus, setMovieStatus] = useState("");
@@ -28,7 +28,7 @@ function Main() {
         />
       </div>
 
-      <Buttons
+      <MovieOptions
         add={role1}
         setMovieStatus={setMovieStatus}
         movieStatus={movieStatus}

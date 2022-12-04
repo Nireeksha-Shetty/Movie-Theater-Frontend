@@ -29,13 +29,13 @@
 }
 .footer-content1 {
   font-size: large;
-  margin-top: -0.7rem;
+  /* margin-top: -0.7rem; */
   margin-left: 0.4rem;
 }
 .footer-content2 {
   font-size: large;
   margin-left: 3rem;
-  margin-top: -0.7rem;
+  /* margin-top: -0.7rem; */
 }
 
 .mapping-poster {
@@ -73,7 +73,7 @@
   margin-right: 13rem;
 }
 
-.buttons {
+.movieCardbuttons {
   display: flex;
   width: 14rem;
 
@@ -88,7 +88,7 @@
   /* display: flex; */
 }
 
-#editbtn {
+#movieCardeditbtn {
   height: 2.5rem;
   width: 5.5rem;
   border-radius: 1rem;
@@ -97,7 +97,7 @@
   background-color: white;
 }
 
-#deletebtn {
+#movieCarddeletebtn {
   height: 2.5rem;
   width: 5.5rem;
   border-radius: 1rem;
