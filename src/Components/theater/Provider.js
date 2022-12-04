@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import AddTheater from "./AddTheater";
+import baseUrlTheater from "../environment/baseUrlTheater";
 
 function Provider(props) {
   var name = "Samarth";
@@ -38,7 +39,7 @@ function Provider(props) {
 
     if (filterType == "All" || filterType == "Filter") {
       axios
-        .get("http://localhost:9090/theater/All")
+        .get(`${baseUrlTheater}All`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
@@ -49,41 +50,15 @@ function Provider(props) {
         .catch(function (error) {
           console.log(error);
           setIsEmpty(false);
-          setErrors(error.response.data);
+          setErrors(error.message);
         });
-    } else if (filterType == "City") {
+    } else if (
+      filterType == "city" ||
+      filterType == "name" ||
+      filterType == "address"
+    ) {
       axios
-        .get(`http://localhost:9090/theater/city/${value}`)
-        .then((response) => {
-          if (response.status == "200") {
-            console.log(response);
-            setAPIdata(response.data);
-            setIsEmpty(true);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-          setIsEmpty(false);
-          setErrors(error.response.data);
-        });
-    } else if (filterType == "Name") {
-      axios
-        .get(`http://localhost:9090/theater/name/${value}`)
-        .then((response) => {
-          if (response.status == "200") {
-            console.log(response);
-            setAPIdata(response.data);
-            setIsEmpty(true);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-          setIsEmpty(false);
-          setErrors(error.response.data);
-        });
-    } else if (filterType == "Address") {
-      axios
-        .get(`http://localhost:9090/theater/searchByAddress/${value}`)
+        .get(`${baseUrlTheater}${filterType}/${value}`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);

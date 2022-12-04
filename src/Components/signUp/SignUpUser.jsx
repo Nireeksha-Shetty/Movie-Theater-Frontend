@@ -48,7 +48,7 @@ function SignUpUser() {
         navigate("/");
       }
       else {
-        alert(response.data);
+        alert(value.data);
       }
     }
     else alert("password did not match");
