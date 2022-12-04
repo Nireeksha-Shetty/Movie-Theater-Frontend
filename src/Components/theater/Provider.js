@@ -15,6 +15,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import AddTheater from "./AddTheater";
+import theaterBase from "../sch_environment/theaterBaseUrl";
 
 function Provider(props) {
   var name = "Samarth";
@@ -38,14 +39,17 @@ function Provider(props) {
 
     if (filterType == "All" || filterType == "Filter") {
       axios
-        .get("https://theater.learn.skillassure.com/theater/theater/All")
+        .get(`${theaterBase}All`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
             setAPIdata(response.data);
             setIsEmpty(true);
-          }
-          else{
+          } else if (response.status == "404") {
+            console.log(response.data);
+            setIsEmpty(false);
+            setErrors(response.data);
+          } else {
             console.log(response.data);
             setIsEmpty(false);
             setErrors(response.data);
@@ -54,58 +58,36 @@ function Provider(props) {
         .catch(function (error) {
           console.log(error);
           setIsEmpty(false);
-          setErrors(error.response.data);
+          setErrors(error.message);
         });
-    } else if (filterType == "City") {
+    } else if (
+      filterType == "city" ||
+      filterType == "name" ||
+      filterType == "address"
+    ) {
       axios
-        .get(
-          `https://theater.learn.skillassure.com/theater/theater/city/${value}`
-        )
+        .get(`${theaterBase}${filterType}/${value}`)
         .then((response) => {
           if (response.status == "200") {
             console.log(response);
             setAPIdata(response.data);
             setIsEmpty(true);
+          } else {
+            console.log(response.data);
+            setIsEmpty(false);
+            setErrors(response.data);
           }
         })
         .catch(function (error) {
-          console.log(error);
-          setIsEmpty(false);
-          setErrors(error.response.data);
-        });
-    } else if (filterType == "Name") {
-      axios
-        .get(
-          `https://theater.learn.skillassure.com/theater/theater/name/${value}`
-        )
-        .then((response) => {
-          if (response.status == "200") {
-            console.log(response);
-            setAPIdata(response.data);
-            setIsEmpty(true);
+          if (error.response.code == "400") {
+            console.log(error);
+            setIsEmpty(false);
+            setErrors(error.response.data);
+          } else {
+            console.log(error);
+            setIsEmpty(false);
+            setErrors(error.message);
           }
-        })
-        .catch(function (error) {
-          console.log(error);
-          setIsEmpty(false);
-          setErrors(error.response.data);
-        });
-    } else if (filterType == "Address") {
-      axios
-        .get(
-          `https://theater.learn.skillassure.com/theater/theater/searchByAddress/${value}`
-        )
-        .then((response) => {
-          if (response.status == "200") {
-            console.log(response);
-            setAPIdata(response.data);
-            setIsEmpty(true);
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-          setIsEmpty(false);
-          setErrors(error.response.data);
         });
     }
   }, [filterType]);

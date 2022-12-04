@@ -17,6 +17,7 @@ import { TbLayoutGridAdd } from "react-icons/tb";
 import AddAddress from "./AddAddress";
 import AddSeats from "./AddSeats";
 import "./AddTheater.css";
+import theaterBase from "../sch_environment/theaterBaseUrl";
 
 function AddTheater() {
   const OverlayOne = () => (
@@ -57,7 +58,7 @@ const finalsubmit=()=>{
 }
 axios
   .post(
-    "https://theater.learn.skillassure.com/theater/theater/theater",
+    `${theaterBase}theater`,
     userdata
   )
   .then((response) => {
