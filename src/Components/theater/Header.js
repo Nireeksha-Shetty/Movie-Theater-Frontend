@@ -28,8 +28,8 @@ function Header(props) {
               <div className="flexer">
                 <Avatar
                   size="lg"
-                  name="Dan Abrahmov"
-                  src="https://miro.medium.com/fit/c/176/176/0*xaub0xwl-9wLTuib.jpg"
+                  name="Samarth"
+                  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                 />
                 <h1 className="username">{props.name}</h1>
               </div>
