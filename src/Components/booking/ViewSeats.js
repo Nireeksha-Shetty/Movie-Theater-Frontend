@@ -7,14 +7,14 @@ function ViewSeats() {
   const [APIData, setAPIData] = useState([]);
   // Get The Seat API
   useEffect(() => {
-    axios.get(`http://localhost:9091/seat`).then((response) => {
+    axios.get(`https://booking.learn.skillassure.com/seats`).then((response) => {
       setAPIData(response.data);
     });
   }, []);
 
   // Post What Gets Selected
   function postSeat() {
-    axios.post(`http://localhost:9091/seat/saveSeat`, APIData);
+    axios.post(`https://booking.learn.skillassure.com/seats/saveSeat`, APIData);
   }
 
   const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
@@ -119,20 +119,10 @@ function ViewSeats() {
       });
     }
 
-    // Initial count and total set
     updateSelectedCount();
   }
   return (
     <div className="movie_main_container">
-      {/* <div className="movie-container">
-        <label> Select a movie:</label>
-        <select id="movie">
-          <option value="220">Black Panther (RS.220)</option>
-          <option value="320">Radhe (RS.320)</option>
-          <option value="250">RRR (RS.250)</option>
-          <option value="260">F9 (RS.260)</option>
-        </select>
-      </div> */}
 
       <ul class="showcase">
         <li>

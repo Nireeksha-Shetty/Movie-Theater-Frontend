@@ -9,9 +9,8 @@ const ViewAllMovieName = ({ moviename }) => {
   const [showContainer, setShowContainer] = useState(false);
 
   useEffect(() => {
-    axios
-      // .get(`http://movies.learn.skillassure.com/${moviename}`)
-      .get(`http://localhost:9091/movie/movieName/${moviename}`)
+      // .get(`http://localhost:9091/movie/movieName/${moviename}`)
+      axios.get(`https://movies.learn.skillassure.com/movies/getByName/${moviename}`)
       .then((response) => {
         setTicket(response.data);
         console.log(response);
@@ -31,11 +30,10 @@ const ViewAllMovieName = ({ moviename }) => {
     <div className="view_all_ticket_container">
       <div className="mainticket">
         <div className="ticketcard">
-          <img src={`${Ticket.url}`}></img>
-
+          <img src={`${Ticket.movieUrl}`}></img>
           <div className="ticketdetails">
-            <div className="moviename">{Ticket.name}</div>
-            <div className="moviegenre">{Ticket.genre}</div>
+            <div className="moviename">{Ticket.movieName}</div>
+            <div className="moviegenre">{Ticket.movieGenre}</div>
             <div className="movieduration">{Ticket.duration}</div>
           </div>
         </div>

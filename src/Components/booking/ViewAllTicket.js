@@ -7,11 +7,14 @@ const ViewAllTicket = () => {
   const [Ticket, setTicket] = useState([]);
 
   useEffect(() => {
-    // axios.get("http://movies.learn.skillassure.com/movieStatus").then((response) => {
-      axios.get("http://localhost:9091/movie/movieStatus").then((response) => {
-      setTicket(response.data);
-      console.log(response.data);
-    });
+    axios
+      .get("https://movies.learn.skillassure.com/movies/getByStatus/RUNNING")
+      .then((response) => {
+        // axios.get("http://movies.learn.skillassure.com/movies/movieStatus").then((response) => {
+        // axios.get("http://localhost:9091/movie/movieStatus").then((response) => {
+        setTicket(response.data);
+        console.log(response.data);
+      });
   }, []);
 
   return (
@@ -22,14 +25,14 @@ const ViewAllTicket = () => {
             {/* {console.log(data)} */}
 
             <div className="ticketcard">
-              <img src={`${data.url}`}></img>
+              <img src={`${data.movieUrl}`}></img>
 
               <div className="ticketdetails">
                 <div className="moviename">
-                  {data.name}
+                  {data.movieName}
                   {/* {console.log(data.name)} */}
                 </div>
-                <div className="moviegenre">{data.genre}</div>
+                <div className="moviegenre">{data.movieGenre}</div>
                 <div className="movieduration">{data.duration}</div>
               </div>
             </div>

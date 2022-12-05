@@ -9,13 +9,16 @@ const Ticket = () => {
   const [BookingData, setBookingData] = useState([[]]);
   const [TheaterData, setTheaterData] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:9091/seat`).then((response) => {
+    // axios.get(`http://localhost:9091/seat`).then((response) => {
+      axios.get(`https://booking.learn.skillassure.com/seat`).then((response) => {
       setAPIData(response.data);
     });
     // axios.get(`http://localhost:9091/booking`).then((response) => {
     //   setBookingData(response.data);
     // });
-    axios.get(`http://localhost:9091/theatre`).then((response) => {
+    
+    // axios.get(`http://localhost:9091/theatre`).then((response) => {
+    axios.get(`https://theater.learn.skillassure.com/theater/theater/All`).then((response) => {
       setTheaterData(response.data);
     });
   }, []);
@@ -32,9 +35,9 @@ const Ticket = () => {
     // console.log(BookingData.seats);
     // console.log(BookingData.seats[0]);
     // console.log(BookingData.seats[1]);
-    axios.post(`http://localhost:9091/booking/`, {
+    axios.post(`https://booking.learn.skillassure.com/booking`, {
       code: "A",
-      name: "A",
+      name: "A",  
       seats: APIData,
       totalPrice: APIData.length * APIData[0].price,
     });
@@ -56,27 +59,27 @@ const Ticket = () => {
           <div className="summary">
             <div className="summary1">
               <span className="seat">
-                {APIData.filter((data) => data.rowId < 2).map(
+                {APIData.filter((data) => data.rowId > 8).map(
                   (data) => data.rowId
                 ).length > 0
                   ? "PREMIUM: " +
-                    APIData.filter((data) => data.rowId < 2).map(
+                    APIData.filter((data) => data.rowId > 8).map(
                       (data) => `${data.name}`
                     )
                   : ""}
                 {APIData.filter(
-                  (data) => data.rowId >= 2 && data.rowId < 5
+                  (data) => data.rowId >= 5 && data.rowId < 8
                 ).map((data) => data.rowId).length > 0
                   ? "GOLD: " +
                     APIData.filter(
-                      (data) => data.rowId >= 2 && data.rowId < 5
+                      (data) => data.rowId >= 5 && data.rowId < 8
                     ).map((data) => `${data.name}`)
                   : ""}
-                {APIData.filter((data) => data.rowId >= 5).map(
+                {APIData.filter((data) => data.rowId < 5).map(
                   (data) => data.rowId
                 ).length > 0
-                  ? "SILVER: " +
-                    APIData.filter((data) => data.rowId >= 5).map(
+                  ? "NORMAL: " +
+                    APIData.filter((data) => data.rowId < 5).map(
                       (data) => `${data.name}`
                     )
                   : ""}

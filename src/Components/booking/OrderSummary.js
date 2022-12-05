@@ -10,26 +10,27 @@ function OrderSummary() {
   const [BookingData, setBookingData] = useState([[]]);
   useEffect(() => {
     // axios.get(`http://booking.learn.skillassure.com/`).then((response) => {
-      axios.get(`http://localhost:9091/booking`).then((response) => {
+      axios.get(`http://booking.learn.skillassure.com/booking`).then((response) => {
       setBookingData(response.data);
     });
   }, []);
   function deleteTicket() {
     console.log("Delete");
     axios.delete(
-      `http://localhost:9091/booking/${BookingData[BookingData.length - 1].id}`
+      `http://booking.learn.skillassure.com/booking/${BookingData[BookingData.length - 1].id}`
     );
   }
   useEffect(() => {
-      axios.get(`http://localhost:9091/seat/`).then((response) => {
+      axios.get(`https://booking.learn.skillassure.com/seat`).then((response) => {
+        // axios.get(`http://localhost:9091/seat/`).then((response) => {
       setAPIData(response.data);
     });
-    axios.get(`http://localhost:9091/theatre`).then((response) => {
-      // axios.get(`http://theater.learn.skillassure.com/`).then((response) => {
+    // axios.get(`http://localhost:9091/theatre`).then((response) => {
+      axios.get(`https://theater.learn.skillassure.com/theater/theater/All`).then((response) => {
       setTheaterData(response.data);
     });
-    axios.get(`http://localhost:9091/movie`).then((response) => {
-      // axios.get(`http://movies.learn.skillassure.com/`).then((response) => {
+    // axios.get(`http://localhost:9091/movie`).then((response) => {
+      axios.get(`https://movies.learn.skillassure.com/movies`).then((response) => {
       setMovieData(response.data);
     });
   }, []);
@@ -51,12 +52,12 @@ function OrderSummary() {
       </div>
       <div className="order_summary_movie_details">
         <div className="order_summary_movie_name">
-          <h6>{MovieData[0]?.name}</h6>
+          <h6>{MovieData[0]?.movieName}</h6>
         </div>
         <div className="order_summary_movie_language">
           {/* <h6>{MovieData[0].language}</h6> */}
           {/* Language To Be Displayed */}
-          <h6>{MovieData[0]?.code}</h6>
+          <h6>{MovieData[0]?.movieCode}</h6>
         </div>
         <div className="order_summary_theater_address">
           <h6>{TheaterData[0]?.name}</h6>
@@ -66,25 +67,25 @@ function OrderSummary() {
         </div>
         <div className="order_summary_seat_details">
           <h6>
-            {APIData.filter((data) => data.rowId < 2).map((data) => data.rowId)
+            {APIData.filter((data) => data.rowId > 8).map((data) => data.rowId)
               .length > 0
               ? "PREMIUM: " +
-                APIData.filter((data) => data.rowId < 2).map(
+                APIData.filter((data) => data.rowId > 8).map(
                   (data) => `${data.name}`
                 )
               : ""}
-            {APIData.filter((data) => data.rowId >= 2 && data.rowId < 5).map(
+            {APIData.filter((data) => data.rowId >= 5 && data.rowId < 8).map(
               (data) => data.rowId
             ).length > 0
               ? "GOLD: " +
-                APIData.filter((data) => data.rowId >= 2 && data.rowId < 5).map(
+                APIData.filter((data) => data.rowId >= 5 && data.rowId < 8).map(
                   (data) => `${data.name}`
                 )
               : ""}
-            {APIData.filter((data) => data.rowId >= 5).map((data) => data.rowId)
+            {APIData.filter((data) => data.rowId < 5).map((data) => data.rowId)
               .length > 0
-              ? "SILVER: " +
-                APIData.filter((data) => data.rowId >= 5).map(
+              ? "NORMAL: " +
+                APIData.filter((data) => data.rowId < 5).map(
                   (data) => `${data.name}`
                 )
               : ""}
