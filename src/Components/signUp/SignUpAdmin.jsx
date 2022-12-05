@@ -47,12 +47,12 @@ function SignUpAdmin() {
 
 
     if (userData.password === password) {
-      if (value.data === true) {
-        alert("success");
+      if (value.data === "Admin registration success") {
+       
         navigate('/registerAdminSuccess');
       }
       else {
-        alert("fail");
+        
         navigate('/registerAdminFailed');
       }
     }

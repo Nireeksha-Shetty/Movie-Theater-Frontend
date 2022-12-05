@@ -225,6 +225,18 @@
   margin-left: 2rem;
 }
 
+.SEdelete{
+  border-radius: 10px;
+  width: 60%;
+  background-color: rgb(255, 248, 248);
+  margin-left: 20%;
+  border-radius: 10px;
+  padding-top: 2%;
+  margin-top: 3%;
+  margin-left: 20%;
+  height: 11vh;
+}
+
 .SEfirstname label {
   margin-left: 2rem;
   margin-top: 1rem;

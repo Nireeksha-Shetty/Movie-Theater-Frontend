@@ -10,6 +10,7 @@ import "../../../src/App.css";
 import { Route } from "react-router-dom";
 import baseUrl from "../environment/baseUrl";
 import axios from "axios";
+import HeaderUser from "../shared/HeaderUser";
 
 
 function Main() {
@@ -18,11 +19,11 @@ function Main() {
   const [search, setSearch] = useState("");
   
   // const response=axios.get(`${baseUrl}/user/${localStorage.getItem("email")}`);
-  const role1="user";
+  const role1="admin";
   return (
     <div className="main-container">
       <div className="main-Container-head">
-        <Header pass={role1} />
+        <HeaderUser pass={role1} />
       </div>
       <div className="main-Container-nav">
         <Navbar

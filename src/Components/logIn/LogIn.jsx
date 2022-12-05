@@ -40,6 +40,13 @@ const LogIn = () => {
         }
 
         // Validating password
+       
+
+
+
+    }
+    function handleInput1(e) {
+        setPassword(e.target.value);
         var y = document.getElementById("password");
         if (y.value.length == 0) {
             document.getElementById("passwordLabel").innerHTML = "Password is required"
@@ -47,12 +54,6 @@ const LogIn = () => {
         else {
             document.getElementById("passwordLabel").innerHTML = "";
         }
-
-
-
-    }
-    function handleInput1(e) {
-        setPassword(e.target.value);
     }
 
     // Comparing the Email and Password entered by the user with database data.
@@ -69,14 +70,11 @@ const LogIn = () => {
             alert("Fail");
         }
         else {
-            if (response1.data.role === "ADMIN") {
-                alert("success Admin");
+            if (response1.data.role === "ADMIN") { 
                 navigate("/adminlandingpage");
-
             }
             else {
-                alert("success user");
-
+                navigate("/");
             }
 
         }

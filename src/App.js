@@ -28,6 +28,12 @@ import ViewTicket from "./Components/booking/ViewTicket";
 import ViewConfirmBookingDetails from "./Components/booking/ViewConfirmBookingDetails";
 import AdminFilterViewAllTicket from "./Components/booking/AdminFilterViewAllTicket";
 
+
+import UserMenu from '../src/Components/foodandBeverages/user-menu';
+import AdminMenu from '../src/Components/foodandBeverages/admin-menu';
+import ViewSettings from "./Components/settingslogin/ViewSettings";
+
+
 function App() {
   return (
     <div>
@@ -45,6 +51,7 @@ function App() {
             <Route path="/resetpassword" element={<Reset />} />
             <Route path="/adminlandingpage" element={<LandingPage />} />
             <Route path="/registerUser" element={<SignUpUser />} />
+            <Route path="/viewSettings" element={<ViewSettings/>}/>
             <Route
               path="/registerAdminSuccess"
               element={<RegisteredSuccess />}
@@ -79,6 +86,12 @@ function App() {
 
             <Route path="/theater" element={<Provider user={"ADMIN"} />} />
           </Route>
+
+
+          <Route path="/UserMenu" element={<UserMenu />} />
+          <Route path="/admin" element={<AdminMenu />} />
+
+
         </Routes>
       </BrowserRouter>
     </div>

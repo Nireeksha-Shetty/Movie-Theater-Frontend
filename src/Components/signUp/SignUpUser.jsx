@@ -3,6 +3,7 @@ import axios from "axios";
 import '../styleslogin/entire.css';
 import baseUrl from "../environment/baseUrl";
 // import Header from "./Header";
+import { useNavigate } from "react-router-dom";
 
 function SignUpUser() {
   const [userData, setUserData] = useState({
@@ -17,6 +18,7 @@ function SignUpUser() {
     confirmPassword: "",
   });
 
+  const navigate=useNavigate();
   const [password, setPassword] = useState("");
 
   // Setting user(Admin) input values
@@ -37,14 +39,16 @@ function SignUpUser() {
   async function handleSignup(e) {
 
     // Posting user data
-    const value = await axios.post(`${baseUrl}/user/user`, userData);
+
     if (userData.password === password) {
-      if (value.data === true) {
+      const value = await axios.post(`${baseUrl}/user/user`, userData);
+      if (value.data === "User registration success") {
         alert("success");
-        const value1 = await axios.get(`${baseUrl}/sendWelcomeMail/${userData.email}`)
+        const value1 = await axios.get(`${baseUrl}/sendWelcomeMail/${userData.email}`);
+        navigate("/");
       }
       else {
-        alert("fail");
+        alert(value.data);
       }
     }
     else alert("password did not match");
