@@ -10,6 +10,7 @@ const ViewAllMovieName = ({ moviename }) => {
 
   useEffect(() => {
     axios
+      // .get(`http://movies.learn.skillassure.com/${moviename}`)
       .get(`http://localhost:9091/movie/movieName/${moviename}`)
       .then((response) => {
         setTicket(response.data);

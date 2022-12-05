@@ -11,6 +11,7 @@ const ViewSearchedDate = ({ moviedate }) => {
   useEffect(() => {
     axios
       .get(`http://localhost:9091/movie/date/${moviedate}`)
+      // .get(`http://moveies.learn.skillassure.com/${moviedate}`)
       .then((response) => {
         setTicket(response.data);
         console.log(response);

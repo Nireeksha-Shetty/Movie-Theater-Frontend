@@ -9,7 +9,8 @@ function OrderSummary() {
   const [MovieData, setMovieData] = useState([[]]);
   const [BookingData, setBookingData] = useState([[]]);
   useEffect(() => {
-    axios.get(`http://localhost:9091/booking`).then((response) => {
+    // axios.get(`http://booking.learn.skillassure.com/`).then((response) => {
+      axios.get(`http://localhost:9091/booking`).then((response) => {
       setBookingData(response.data);
     });
   }, []);
@@ -20,13 +21,15 @@ function OrderSummary() {
     );
   }
   useEffect(() => {
-    axios.get(`http://localhost:9091/seat`).then((response) => {
+      axios.get(`http://localhost:9091/seat/`).then((response) => {
       setAPIData(response.data);
     });
     axios.get(`http://localhost:9091/theatre`).then((response) => {
+      // axios.get(`http://theater.learn.skillassure.com/`).then((response) => {
       setTheaterData(response.data);
     });
     axios.get(`http://localhost:9091/movie`).then((response) => {
+      // axios.get(`http://movies.learn.skillassure.com/`).then((response) => {
       setMovieData(response.data);
     });
   }, []);

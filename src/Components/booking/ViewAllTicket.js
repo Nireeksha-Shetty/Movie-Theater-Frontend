@@ -7,7 +7,8 @@ const ViewAllTicket = () => {
   const [Ticket, setTicket] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:9091/movie/movieStatus").then((response) => {
+    // axios.get("http://movies.learn.skillassure.com/movieStatus").then((response) => {
+      axios.get("http://localhost:9091/movie/movieStatus").then((response) => {
       setTicket(response.data);
       console.log(response.data);
     });
