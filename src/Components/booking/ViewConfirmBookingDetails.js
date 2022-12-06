@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import "./ViewConfirmBookingDetails.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const Ticket = () => {
   const [APIData, setAPIData] = useState([]);
@@ -10,17 +12,19 @@ const Ticket = () => {
   const [TheaterData, setTheaterData] = useState([]);
   useEffect(() => {
     // axios.get(`http://localhost:9091/seat`).then((response) => {
-      axios.get(`https://booking.learn.skillassure.com/seat`).then((response) => {
+    axios.get(`https://booking.learn.skillassure.com/seat`).then((response) => {
       setAPIData(response.data);
     });
     // axios.get(`http://localhost:9091/booking`).then((response) => {
     //   setBookingData(response.data);
     // });
-    
+
     // axios.get(`http://localhost:9091/theatre`).then((response) => {
-    axios.get(`https://theater.learn.skillassure.com/theater/theater/All`).then((response) => {
-      setTheaterData(response.data);
-    });
+    axios
+      .get(`https://theater.learn.skillassure.com/theater/theater/All`)
+      .then((response) => {
+        setTheaterData(response.data);
+      });
   }, []);
   const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
   const selectedMoviePrice = JSON.parse(
@@ -37,7 +41,7 @@ const Ticket = () => {
     // console.log(BookingData.seats[1]);
     axios.post(`https://booking.learn.skillassure.com/booking`, {
       code: "A",
-      name: "A",  
+      name: "A",
       seats: APIData,
       totalPrice: APIData.length * APIData[0].price,
     });
@@ -49,6 +53,7 @@ const Ticket = () => {
 
   return (
     <div className="container_main">
+      <Header></Header>
       {/* {APIData.map((data) => { */}
       {/* return ( */}
       <div className="main">
@@ -109,7 +114,7 @@ const Ticket = () => {
                   ).toFixed(1)}
                 </span>
                 <div className="base">
-                  <span className="base1">Base Amount</span>  
+                  <span className="base1">Base Amount</span>
                   <span className="base2">
                     Rs. {(APIData.length * 100 * 0.25).toFixed(1)}
                   </span>
@@ -178,6 +183,7 @@ const Ticket = () => {
               Proceed
             </button>
           </Link>
+      <Footer></Footer>
         </div>
       </div>
       {/* ); */}

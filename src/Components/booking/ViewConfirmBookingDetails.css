@@ -6,7 +6,7 @@
 .main {
   height: 30rem;
   width: 23.5rem;
-  /* margin-right: 5rem; */
+  
 }
 
 .main1 {
@@ -15,9 +15,15 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   height: 26rem;
   width: 23.5rem;
-  /* margin-top: 7rem; */
-  /* margin-left: 47rem; */
-  /* position: absolute; */
+  position: absolute;
+  margin-top: 5rem;
+  /* left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%); */
 }
 .booking {
   /* background-color: coral; */
@@ -92,7 +98,7 @@
 }
 .sub {
   width: 21rem;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   border-top: 1px solid grey;
   /* background: cornflowerblue; */
 }
