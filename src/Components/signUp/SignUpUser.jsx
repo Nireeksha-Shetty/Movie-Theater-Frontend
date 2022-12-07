@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import '../styleslogin/entire.css';
+import '../styles/login-style/entire.css';
 import baseUrl from "../environment/baseUrl";
+import { Navigate, useNavigate } from "react-router-dom";
 // import Header from "./Header";
-import { useNavigate } from "react-router-dom";
 
 function SignUpUser() {
   const [userData, setUserData] = useState({
@@ -18,7 +18,7 @@ function SignUpUser() {
     confirmPassword: "",
   });
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
 
   // Setting user(Admin) input values
@@ -39,19 +39,21 @@ function SignUpUser() {
   async function handleSignup(e) {
 
     // Posting user data
-
+    const value = await axios.post(`${baseUrl}/user/user`, userData);
+    console.log(value.data);
     if (userData.password === password) {
-      const value = await axios.post(`${baseUrl}/user/user`, userData);
       if (value.data === "User registration success") {
-        alert("success");
         const value1 = await axios.get(`${baseUrl}/sendWelcomeMail/${userData.email}`);
         navigate("/");
       }
       else {
-        alert(value.data);
+        document.getElementById("signUpAlert").innerHTML = value.data;
       }
     }
-    else alert("password did not match");
+    else {
+      alert("fail Password");
+      document.getElementById("signUpAlert").innerHTML = "Password and Confirm password did not match";
+    }
   }
 
   //JSX Component
@@ -74,7 +76,7 @@ function SignUpUser() {
         <div className="flex-items">
           <div className='Sbirthday flex-item-single'>
             <label htmlFor='Sbirthday'>Birthday <code>*</code></label><br />
-            <input type="date" name=""></input>
+            <input type="date" name="" min="1924-12-06" max="2004-12-06"></input>
           </div>
           <div className='Sgender flex-item-single'>
             <label htmlFor='Sgender'>Gender <code>*</code></label><br />
@@ -90,7 +92,7 @@ function SignUpUser() {
             <input type="text" name="mobileNumber" onChange={(e) => onTextFieldChange(e)}></input>
           </div>
           <div className='Shome flex-item-single'>
-            <label htmlFor='Shome'>Home Phone</label><br />
+            <label htmlFor='Shome'>Tele-Phone</label><br />
             <input type="text" name="phoneNumber" onChange={(e) => onTextFieldChange(e)}></input>
           </div>
         </div>
@@ -119,6 +121,7 @@ function SignUpUser() {
           <div className="admin-register-submit">
             <button className="Sbutton " onClick={(e) => handleSignup(e)}>Submit</button>
           </div>
+          <div id="sigUpAlert"></div>
         </div>
       </div>
     </div>

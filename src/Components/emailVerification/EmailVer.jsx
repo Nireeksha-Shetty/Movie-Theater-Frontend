@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import baseUrl from '../environment/baseUrl';
-import '../styleslogin/entire.css';
+import '../styles/login-style/entire.css';
 // import Header from './Header';
 import { useNavigate } from 'react-router-dom';
 

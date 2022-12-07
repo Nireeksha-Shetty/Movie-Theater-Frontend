@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import '../styleslogin/entire.css';
+import '../styles/login-style/entire.css';
 import baseUrl from "../environment/baseUrl";
 // import Header from "./Header";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -43,21 +43,22 @@ function SignUpAdmin() {
   async function handleSignup(e) {
 
     // Posting user(Admin) data
-    const value = await axios.post(`${baseUrl}/user`, userData);
+
 
 
     if (userData.password === password) {
+      const value = await axios.post(`${baseUrl}/user`, userData);
+      const value1 = await axios.get(`${baseUrl}/sendWelcomeMail/${userData.email}`)
       if (value.data === "Admin registration success") {
-       
         navigate('/registerAdminSuccess');
       }
       else {
-        
+        document.getElementById("signUpAlert").innerHTML = value.data;
         navigate('/registerAdminFailed');
       }
     }
     else {
-      alert("password did not match");
+      document.getElementById("signUpAlert").innerHTML = "Password and Confirm password did not match";
       navigate('/registerAdminFailed');
     }
   }
@@ -80,7 +81,7 @@ function SignUpAdmin() {
         <div className="flex-items">
           <div className='Sbirthday flex-item-single'>
             <label htmlFor='Sbirthday'>Birthday <code>*</code></label><br />
-            <input type="date" name=""></input>
+            <input type="date" name="" min="1924-12-06" max="2004-12-06"></input>
           </div>
           <div className='Sgender flex-item-single'>
             <label htmlFor='Sgender'>Gender <code>*</code></label><br />
@@ -96,7 +97,7 @@ function SignUpAdmin() {
             <input type="text" name="mobileNumber" onChange={(e) => onTextFieldChange(e)}></input>
           </div>
           <div className='Shome flex-item-single'>
-            <label htmlFor='Shome'>Home Phone</label><br />
+            <label htmlFor='Shome'>Tele-Phone</label><br />
             <input type="text" name="phoneNumber" onChange={(e) => onTextFieldChange(e)}></input>
           </div>
         </div>
@@ -125,6 +126,7 @@ function SignUpAdmin() {
           <div className="admin-register-submit">
             <button className="Sbutton " onClick={(e) => handleSignup(e)}>Submit</button>
           </div>
+          <div id="sigUpAlert"></div>
         </div>
       </div>
     </div>

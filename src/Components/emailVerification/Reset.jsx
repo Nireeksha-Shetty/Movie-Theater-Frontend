@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../styleslogin/entire.css';
+import '../styles/login-style/entire.css';
 // import Header from "./Header";
 import axios from "axios";
 import baseUrl from "../environment/baseUrl";
