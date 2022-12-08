@@ -1,24 +1,36 @@
-import React, { useState } from "react";
-import Footer from "../shared/Footer";
-import Header from "../shared/Header";
+import React, { useState, useEffect } from "react";
+import Footer from "../../shared/Footer";
 import Moviecard from "../movie/Moviecard";
-import Navbar from "../shared/Navbar";
-import "../../../src/App.css";
+import Navbar from "../../shared/Navbar";
+import "../../../../src/App.css";
 import MovieOptions from "../button/MovieOptions";
+import HeaderUser from "../../shared/HeaderUser";
+import axios from "axios";
+import baseUrl from "../../environment/baseUrl";
 
-function Main(role) {
-  //To set the MovieURL which keeps changing in the child components NavBar and movieOptions 
+function MainUser() {
   const [movieStatus, setMovieStatus] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
-
-  //To fetch the actor details
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    handleProfileSettings();
+  }, []);
+  // Getting role from the user management module
+  async function handleProfileSettings(e) {
+    const response = await axios.get(
+      `${baseUrl}/user/settings/${localStorage.getItem(
+        "email"
+      )}/${localStorage.getItem("password")}`
+    );
+    setRole(response.data.role);
+  }
   const role1 = localStorage.getItem("role");
   return (
     <div className="main-container">
+      {/* calling all the components  */}
       <div className="main-Container-head">
-        {/* calling all the components  */}
-        <Header pass={role1} />
+        <HeaderUser pass={role1} />
       </div>
       <div className="main-Container-nav">
         <Navbar
@@ -41,4 +53,4 @@ function Main(role) {
   );
 }
 
-export default Main;
+export default MainUser;

@@ -5,7 +5,7 @@ import HeaderUser from "../shared/HeaderUser";
 import "../styles/foodAndBeverages-style/user-body.css";
 import bookingUrl from "../environment/bookingUrl";
 import foodandbeweragesUrl from "../environment/foodandbeweragesUrl";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 let imageUrl =
   "https://assets-in.bmscdn.com/promotions/cms/creatives/1652696821976_728x100.png";
@@ -23,6 +23,8 @@ let currentCategory = "All";
 let previousCategory;
 
 const UserBody = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [foodItemsList, setFoodItemsList] = useState([]);
   const [renderer, setRenderer] = useState(false);
 
@@ -56,11 +58,20 @@ const UserBody = () => {
       const temp2 = data[0];
       temp.basicFare = temp2.price;
       temp.seatType = temp2.seatType;
-      temp.seats = [temp2.name];
-      temp.totalTickets = temp.seats.length;
+      temp.seats = localStorage.getItem("selectedSeats");
+      console.log(temp.seats);
+      // localStorage.removeItem("selectedSeats");
+      temp.totalTickets = generateSeatCount(
+        location.state.selectedSeatCount
+      ).length;
       temp.theatre = theaterName;
       setTicketBookingSummary(temp);
     }
+  };
+
+  const generateSeatCount = (seatString) => {
+    seatString = seatString.slice(1, -1);
+    return seatString.split(",");
   };
 
   useEffect(() => {
@@ -109,7 +120,8 @@ const UserBody = () => {
         totalTicketPrice
       ).toFixed(2),
     });
-    alert("Booking Successful");
+    navigate("/BookingConfirmed");
+    localStorage.setItem("amount-payable-food", totalAddonsCost.toFixed(2));
   };
 
   useEffect(() => {
@@ -466,7 +478,7 @@ const UserBody = () => {
               </button>
             </div>
           </div>
-          <Link to="/">
+          <center style={{ marginTop: "0.5rem" }}>
             <button
               type="button"
               className="booking-done"
@@ -474,7 +486,7 @@ const UserBody = () => {
             >
               Book Ticket
             </button>
-          </Link>
+          </center>
         </div>
         {/* ------------------------------End of Body rightside part start-------------------- */}
       </div>

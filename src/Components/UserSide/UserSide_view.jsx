@@ -161,7 +161,7 @@ export default function UserSide_View() {
 
         {/* Using multislot Object making entity based on movie name Slots */}
 
-        <div style={{ marginTop: "24rem", marginLeft: "8rem" }}>
+        <div style={{ marginTop: "24rem", marginLeft: "2rem" }}>
           {input.length == 0 ? (
             <div>
               <br></br>

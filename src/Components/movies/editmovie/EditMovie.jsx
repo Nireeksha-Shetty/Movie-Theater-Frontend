@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../styles/movie-style/EditMovie.css";
+import "../../styles/movie-style/EditMovie.css";
 import { Multiselect } from "multiselect-react-dropdown";
-import movieDeployedUrl from "../environment/movieUrl";
+import movieDeployedUrl from "../../environment/movieUrl";
 
 function EditMovie({ setModalOpen }) {
   const [id, setId] = useState(null);
@@ -317,7 +317,7 @@ function EditMovie({ setModalOpen }) {
                       updateAPIData();
                       window.setTimeout(function () {
                         window.location.reload();
-                      }, 500);
+                      }, 2000);
                     }}
                   >
                     Save Movie

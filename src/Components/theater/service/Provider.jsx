@@ -24,20 +24,14 @@ function Provider(props) {
   const [value, setValue] = useState("kiru");
   const [isEmpty, setIsEmpty] = useState(false);
   const [errors, setErrors] = useState("Loading Data ...");
-  const [loggedIn, setLoggedIn] = useState(false);
+
   const [role, setRole] = useState("");
 
-  console.log("first", loggedIn);
   useEffect(() => {
     handleProfileSettings();
   }, []);
 
-  useEffect(() => {
-    if (localStorage.getItem("code") != null) {
-      console.log(localStorage.getItem("code"));
-      setLoggedIn(true);
-    }
-  }, [loggedIn]);
+
 
   async function handleProfileSettings(e) {
     const response = await axios.get(
@@ -115,7 +109,7 @@ function Provider(props) {
 
   return (
     <>
-      {loggedIn && (
+      
         <ChakraProvider>
           <Header pass={userType} />
           <Filter
@@ -176,8 +170,8 @@ function Provider(props) {
           </Grid>
           <Footer />
         </ChakraProvider>
-      )}
-      {!loggedIn && nav("/mainUser")}
+      )
+      
     </>
   );
 }

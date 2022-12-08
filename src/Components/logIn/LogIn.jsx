@@ -17,7 +17,8 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [token, setToken] = useState(null);
-  const [errorResponse, setErrorResponse] = useState(false);
+  const [errorResponse, setErrorResponse] = useState();
+  const [errorResponse1, setErrorResponse1] = useState();
 
   function handleInput(e) {
     // Validating Email
@@ -47,19 +48,25 @@ const LogIn = () => {
 
   // Comparing the Email and Password entered by the user with database data.
   async function log(e) {
+    const response1 = await axios
+      .get(`${baseUrl}/user/settings/${email}/${password}`)
+      .catch((error) => {
+        if (error.response.status == 400) {
+          setErrorResponse1(error.response.data);
+        }
+      });
     const response2 = await axios
       .get(`${baseUrl}/user/${email}/${password}`)
       .catch((error) => {
         if (error.response.status == 400) {
-          console.log(error.response.data);
+          document.getElementById("logInAlert").innerHTML =
+            "Invalid Email/Password";
           setErrorResponse(error.response.data);
         }
       });
-    const response1 = await axios.get(
-      `${baseUrl}/user/settings/${email}/${password}`
-    );
 
-    console.log(response2);
+    //console.log(response2.data);
+    console.log(response1.data);
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
     localStorage.setItem("code", response1.data.code);
@@ -67,13 +74,13 @@ const LogIn = () => {
     // Storing current role in a variable
     const roleFetcher = response1.data.role;
 
-    if (response2.data === true) {
+    if (response2.data === true && response1.data != "") {
       if (response1.data.role === "ADMIN") {
         navigate("/adminlandingpage");
       } else {
         navigate("/mainUser");
       }
-    } else if (errorResponse === false) {
+    } else if (errorResponse === "false") {
       document.getElementById("logInAlert").innerHTML =
         "Invalid Email/Password";
     } else {

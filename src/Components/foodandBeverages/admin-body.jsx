@@ -5,6 +5,7 @@ import Header from "../shared/Header";
 import foodandbeweragesUrl from "../environment/foodandbeweragesUrl";
 import bookingUrl from "../environment/bookingUrl";
 import HeaderUser from "../shared/HeaderUser";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 let imageUrl =
   "https://assets-in.bmscdn.com/promotions/cms/creatives/1652696821976_728x100.png";
@@ -18,6 +19,8 @@ let currentCategory = "All";
 let previousCategory;
 
 const AdminBody = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   let [foodItemsList, setFoodItemsList] = useState([]);
   let currentDeletingItemId;
   const [renderer, setRenderer] = useState(false);
@@ -53,11 +56,20 @@ const AdminBody = () => {
       const temp2 = data[0];
       temp.basicFare = temp2.price;
       temp.seatType = temp2.seatType;
-      temp.seats = [temp2.name];
-      temp.totalTickets = temp.seats.length;
+      temp.seats = localStorage.getItem("selectedSeats");
+      console.log(temp.seats);
+      // localStorage.removeItem("selectedSeats");
+      temp.totalTickets = generateSeatCount(
+        location.state.selectedSeatCount
+      ).length;
       temp.theatre = theaterName;
       setTicketBookingSummary(temp);
     }
+  };
+
+  const generateSeatCount = (seatString) => {
+    seatString = seatString.slice(1, -1);
+    return seatString.split(",");
   };
 
   useEffect(() => {
@@ -379,6 +391,32 @@ const AdminBody = () => {
         break;
       }
     }
+  };
+
+  /* Ticket Booking Post */
+
+  const [SeatAPIData, setSeatAPIData] = useState([]);
+  useEffect(() => {
+    axios.get(`https://booking.learn.skillassure.com/seat`).then((response) => {
+      setSeatAPIData(response.data);
+    });
+  }, []);
+
+  const postBooking = () => {
+    axios.post(`https://booking.learn.skillassure.com/bookings`, {
+      code: "A",
+      name: "9",
+      seats: SeatAPIData,
+      totalPrice: (
+        totalAddonsCost +
+        totalConvenienceFee +
+        totalTicketPrice
+      ).toFixed(2),
+    });
+    navigate("/BookingConfirmed", {
+      state: { selectedSeatCount: location.state.selectedSeatCount },
+    });
+    localStorage.setItem("amount-payable-food", totalAddonsCost.toFixed(2));
   };
 
   return (
@@ -957,6 +995,15 @@ const AdminBody = () => {
                 ).toFixed(2)}
               </button>
             </div>
+            <center style={{ marginTop: "0.5rem" }}>
+              <button
+                type="button"
+                className="booking-done"
+                onClick={postBooking}
+              >
+                Book Ticket
+              </button>
+            </center>
           </div>
         </div>
         {/* ------------------------------End of Body rightside part start-------------------- */}

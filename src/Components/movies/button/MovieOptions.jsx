@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../styles/movie-style/Buttons.css";
+import "../../styles/movie-style/Buttons.css";
 import Main from "../main/Main";
 import AddMovie from "../addmovie/AddMovie";
-import Adminschedule from "../AdminSchedule/Adminschedule";
+import Adminschedule from "../../AdminSchedule/Adminschedule";
 
 export default function MovieOptions({ setMovieStatus, add }) {
   //States to open and close  the model

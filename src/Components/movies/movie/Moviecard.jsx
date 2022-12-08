@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/movie-style/Moviecard.css";
+import "../../styles/movie-style/Moviecard.css";
 import { AiFillStar } from "react-icons/ai";
 import EditMovie from "../editmovie/EditMovie";
 import Delete from "../delete/Delete";
-import { PageNotFound } from "../shared/PageNotFound";
-import movieDeployedUrl from "../environment/movieUrl";
+import { PageNotFound } from "../../shared/PageNotFound";
+import movieDeployedUrl from "../../environment/movieUrl";
 import { useNavigate } from "react-router-dom";
 
 export default function Moviecard({ movieStatus, add }) {
@@ -16,6 +16,14 @@ export default function Moviecard({ movieStatus, add }) {
   const [errorMsg, setErrorMsg] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("code") != null) {
+      console.log(localStorage.getItem("code"));
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
 
   useEffect(() => {
     console.log(movieStatus);
@@ -78,8 +86,12 @@ export default function Moviecard({ movieStatus, add }) {
             <div
               className="main-imgtag"
               onClick={() => {
-                schedulePage();
                 setDataToLocalStorage(data);
+                {
+                  loggedIn
+                    ? navigate("/UserSideMovieView")
+                    : navigate("/LogIn");
+                }
               }}
             >
               <img

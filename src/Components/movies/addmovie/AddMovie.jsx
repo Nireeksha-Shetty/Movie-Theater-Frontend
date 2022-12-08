@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import "../styles/movie-style/AddMovie.css";
+import "../../styles/movie-style/AddMovie.css";
 import axios from "axios";
 import { isRouteErrorResponse, Link } from "react-router-dom";
 // import "./AddMovie.css";
 import { Multiselect } from "multiselect-react-dropdown";
-import movieDeployedUrl from "../environment/movieUrl";
+import movieDeployedUrl from "../../environment/movieUrl";
 
 function AddMovie({ setModalOpen }) {
   // const [id, setId] = useState("");
@@ -294,7 +294,7 @@ function AddMovie({ setModalOpen }) {
                       // fieldValidation(e);
                       window.setTimeout(function () {
                         window.location.reload();
-                      }, 1000);
+                      }, 2000);
                     }}
                   >
                     Add Movie

@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../styles/booking-style/ViewSeats.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import baseUrl from "../environment/baseUrl";
 
 function ViewSeats() {
   const navigate = useNavigate();
   const [APIData, setAPIData] = useState([]);
+
   // Get The Seat API
   useEffect(() => {
     axios
@@ -134,8 +136,15 @@ function ViewSeats() {
       document.getElementById("check-seat-error").innerText =
         "Please Select Seats";
     } else {
-      navigate("/foodAndBeveragesUser");
-      localStorage.removeItem("selectedSeats");
+      if (localStorage.getItem("role").toLowerCase() === "user")
+        navigate("/foodAndBeveragesUser", {
+          state: { selectedSeatCount: selectedSeatCount },
+        });
+      else if (localStorage.getItem("role").toLowerCase() === "admin")
+        navigate("/foodAndBeveragesAdmin", {
+          state: { selectedSeatCount: selectedSeatCount },
+        });
+      // localStorage.removeItem("selectedSeats");
     }
   }
   return (

@@ -30,10 +30,20 @@ import UpdateTheater from "../updateTheater/UpdateTheater";
 import DeleteTheater from "../deleteTheater/DeleteTheater";
 import { useNavigate } from "react-router-dom";
 
-// Modal
+
 
 function Theater(props) {
     var theatername = props.TheaterName;
+
+    const [loggedIn, setLoggedIn] = useState(false);
+    
+    useEffect(() => {
+      if (localStorage.getItem("code") != null) {
+        console.log(localStorage.getItem("code"));
+        setLoggedIn(true);
+      }
+    }, [loggedIn]);
+
     const navigate = useNavigate();
     return (
       <div className="Theaters">
@@ -116,7 +126,9 @@ function Theater(props) {
               color="white"
               borderRadius="30px"
               onClick={() => {
-                navigate("/UserSide_view");
+                {loggedIn
+                  ? navigate("/UserSide_view")
+                  : navigate("/LogIn");}
                 localStorage.setItem("theater_name", props?.TheaterName);
               }}
             >
